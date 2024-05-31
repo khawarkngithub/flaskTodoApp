@@ -1,0 +1,95 @@
+ {% extends 'base.html' %}
+ {% block title %}
+        Home
+       {% endblock title %} 
+ {% block body %}
+    
+ <!-- <h1>JavaScript</h1> -->
+    <div class="container my-3"><nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container">
+          <a class="navbar-brand" href="/">My Todo</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+             </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav></div>
+      
+      <div class="container my-3">
+        <form action="/" method="POST">
+            <h4>Add a Todo</h4>
+        <div class="mb-3">
+          <label for="title" class="form-label">Todo Title</label>
+          <input type="text" name="title" class="form-control" id="title" aria-describedby="emailHelp">
+          
+        </div>
+        <div class="mb-3">
+          <label for="desc" class="form-label">Todo Description</label>
+          <input type="text" name="desc" class="form-control" id="desc">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form></div>
+      <div class="container my-3"><table class="table">
+        <H3>Your Todos</H3>
+            {% if alltodo|length==0%}
+            <div class="alert alert-dark" role="alert">
+              No Todos to display. Add a todo!
+              </div>
+                {% else %}     
+            <thead>
+                <tr>
+                  <th scope="col">Sno</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Datetime</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+              
+              {% for todo in alltodo %}
+            <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td>{{todo.title}}</td>
+                <td>{{todo.desc}}</td>
+                <td>{{todo.date_created}}</td>
+                <td>
+                    <a href="/update/{{todo.sno}}">Update</a>
+                    <a href="/delete/{{todo.sno}}">Delete</a>
+                    
+                </td>
+              </tr>
+            </tbody>
+        </table>
+                  
+            {% endfor %}
+            {% endif %}                
+            
+          </div>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+    -->
+    {% endblock body %}
+ 
+   
+ 
